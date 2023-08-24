@@ -98,3 +98,134 @@ function Friend() {
     );
 }
 
+const fiftyFifty = Math.random() < 0.5;
+
+// New function component starts here:
+function TonightsPlan() {
+    if (fiftyFifty) {
+        return <h1>Tonight I'm going out WOOO</h1>;
+    }
+    else {
+        return <h1>Tonight I'm going to bed WOOO</h1>;
+    }
+}
+
+function TodaysPlan() {
+    let task;
+    let apocalypse = false;
+    if (!apocalypse) {
+        task = 'learn React.js'
+    }
+    else {
+        task = 'run around'
+    }
+    return <h1>Today I am going to {task}!</h1>;
+}
+
+// Event listener and event handler
+function SubmitButton() {
+    function handleClick() {
+        alert('Submission Successful.');
+    }
+    return <button onClick={handleClick}>Submit</button>;
+}
+
+function MyQuote() {
+    return (
+        <blockquote>
+            <p>
+                What is important now is to recover our senses.
+            </p>
+            <cite>
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Susan_Sontag">
+                    Susan Sontag
+                </a>
+            </cite>
+        </blockquote>
+    );
+};
+
+// Authorization form
+function App() {
+    return (
+        <div>
+            <h1>Welcome!</h1>
+            <Conditional />
+        </div>
+    );
+}
+
+function Conditional() {
+    const returnValue = Math.random() < 0.5;
+    if (returnValue) {
+        return <Secret />;
+    }
+    else {
+        return <Public />;
+    }
+}
+
+function Secret() {
+    return <h1>Secret</h1>;
+}
+
+function Public() {
+    return <h1>Public</h1>;
+}
+
+// Inline style
+function App() {
+    return (
+        <div>
+            <h1 style={{ color: 'red' }}>Hello world</h1>
+        </div>
+    );
+}
+
+function Contact() {
+    const password = 'swordfish';
+    const [authorized, setAuthorized] = useState(false);
+
+    function handleSubmit(e) {
+        const enteredPassword = e.target.querySelector(
+            'input[type="password"]').value;
+        const auth = enteredPassword == password;
+        setAuthorized(auth)
+
+        const login = (
+            <form action="#" onSubmit={handleSubmit}>
+                <input
+                    type="password"
+                    placeholder="Password"
+                />
+                <input
+                    type="submit"
+                />
+            </form>
+        );
+
+        const contactInfo = (
+            <ul>
+                <li>
+                    client@example.com
+                </li>
+                <li>
+                    555.555.5555
+                </li>
+            </ul>
+        );
+    }
+
+    return (
+        <div id="authorization">
+            <h1>
+                {
+                    authorized ? 'Contact' : 'Enter the Password'
+                }
+            </h1>
+            {
+                authorized ? contactInfo : login
+            }
+        </div>
+    );
+}
